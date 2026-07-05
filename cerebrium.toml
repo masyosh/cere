@@ -1,0 +1,28 @@
+[cerebrium.deployment]
+name = "my-app"
+python_version = "3.12"
+docker_base_image_url = "debian:bookworm-slim"
+disable_auth = true
+include = ['./*', 'main.py', 'cerebrium.toml']
+exclude = ['.*']
+
+[cerebrium.hardware]
+compute = "ADA_L40"
+gpu_count = 1
+
+[cerebrium.scaling]
+min_replicas = 1
+max_replicas = 1
+cooldown = 10
+replica_concurrency = 1000
+
+[cerebrium.dependencies.pip]
+pydantic = "latest"
+numpy = "latest"
+loguru = "latest"
+fastapi = "latest"
+
+[cerebrium.dependencies.apt]
+curl = "latest"
+wget = "latest"
+ocl-icd-opencl-dev = "latest"
